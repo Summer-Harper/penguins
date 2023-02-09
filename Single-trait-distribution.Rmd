@@ -1,0 +1,18 @@
+---
+title: "Single trait distribution"
+author: "Summer Harper"
+date: "2023-02-09"
+output: html_document
+---
+## Single trait distribution
+The mean bill length (mm) for all penguins species is `r  mean(penguins$bill_length_mm, na.rm = TRUE)`mm.
+
+``` {r, echo = FALSE}
+Adelie_Penguins <- penguins %>% filter(species == "Adelie")
+```
+The mean bill length (mm) for Adelie penguins is `r  mean(Adelie_Penguins$bill_length_mm, na.rm = TRUE)`mm. Adelie penguins have the lowest mean bill length compared to the Chinstrap and Gentoo species. 
+
+
+``` {r, echo = FALSE}
+ggplot(data=subset(penguins, !is.na(bill_length_mm))) + geom_boxplot(mapping = aes(x = species, y = bill_length_mm))
+```
