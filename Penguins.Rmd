@@ -1,0 +1,42 @@
+---
+title: "penguins"
+author: "Summer Harper"
+date: "2023-02-09"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Data
+There are two data sets in ```palmerpenguins```. The first is called ```penguins``` and the second is called ```penguins_raw```. Data from these datasets gives information about species, region, bill length, bill depth, flipper lenght, body mass, and sex. Both data sets contain information for 344 penguins. 
+
+```{r, echo = FALSE, fig.align = "center", out.width= "50%"}
+knitr::include_graphics("https://animalcorner.org/wp-content/uploads/2022/12/baby-penguin-facts-7488002.png")
+```
+
+## Single trait distribution
+The mean bill length (mm) for all penguins species is `r  mean(penguins$bill_length_mm, na.rm = TRUE)`mm.
+
+``` {r, echo = FALSE}
+Adelie_Penguins <- penguins %>% filter(species == "Adelie")
+```
+The mean bill length (mm) for Adelie penguins is `r  mean(Adelie_Penguins$bill_length_mm, na.rm = TRUE)`mm. Adelie penguins have the lowest mean bill length compared to the Chinstrap and Gentoo species. 
+
+
+``` {r, echo = FALSE}
+ggplot(data=subset(penguins, !is.na(bill_length_mm))) + geom_boxplot(mapping = aes(x = species, y = bill_length_mm))
+```
+
+
+
+## Relationship between multiple traits
+
+``` {r, echo = FALSE}
+ggplot(data=subset(penguins, !is.na(bill_length_mm))) + geom_boxplot(mapping = aes(x = species, y = bill_length_mm, color = sex))
+```
+
+## Sexual dimorphism
