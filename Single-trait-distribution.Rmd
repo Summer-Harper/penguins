@@ -4,7 +4,7 @@ author: "Summer Harper"
 date: "2023-02-09"
 output: html_document
 ---
-## Single trait distribution
+
 The mean bill length (mm) for all penguins species is `r  mean(penguins$bill_length_mm, na.rm = TRUE)`mm.
 
 ``` {r, echo = FALSE}
